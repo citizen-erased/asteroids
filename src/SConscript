@@ -1,0 +1,64 @@
+Import('*')
+
+src_glew = [
+    dir_build_libraries + "/glew/glew.c",
+]
+
+src_asteroids = [
+    "glew.o",
+
+    "aabb.cpp",
+    "camera.cpp",
+    "main.cpp",
+    "misc.cpp",
+    "audio/audio.cpp",
+    "core/logger.cpp",
+    "core/error.cpp",
+    "client/client.cpp",
+    "client/client_game.cpp",
+    "draw/draw.cpp",
+    "draw/particle_system.cpp",
+    "entity/entity.cpp",
+    "entity/asteroid.cpp",
+    "entity/bullet.cpp",
+    "entity/ship.cpp",
+    "game/client_server_state.cpp",
+    "game/client_state.cpp",
+    "game/game.cpp",
+    "menu/gui_font.cpp",
+    "menu/gui_image_loader.cpp",
+    "menu/gui_input.cpp",
+    "menu/menu.cpp",
+    "network/message.cpp",
+    "network/serializer.cpp",
+    "server/server.cpp",
+    "server/server_game.cpp",
+]
+
+
+libs = [
+    "GL",
+    "GLU",
+    "sfml-system",
+    "sfml-window",
+    "sfml-graphics",
+    "sfml-audio",
+    "sfml-network",
+    "enet",
+    "Box2D",
+    "guichan",
+    "guichan_opengl",
+]
+
+
+debug = Environment(
+    #CCFLAGS = "-g -Wall -Wextra -DLINUX",
+    CCFLAGS = "-O3 -Wall -Wextra -DLINUX",
+    CPPPATH = [".", dir_build_libraries],
+    #LINKFLAGS = "-pg",
+)
+
+obj_glew = debug.Object(target="glew.o", source=src_glew)
+
+program = debug.Program("asteroids_d", src_asteroids, LIBS=libs)
+

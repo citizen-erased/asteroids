@@ -1,0 +1,24 @@
+Multiplayer Asteroids game.
+
+REQUIRED LIBS:
+SFML 1.6
+GLEW
+Box2D
+enet
+guichan
+configurable math library
+boost
+
+BUILD:
+
+run scons in the build directory:
+cd build
+scons
+
+to run the game go into the dist directory and run asteroids_d.
+can do it all by running the go.sh shell sript.
+
+
+BUGS:
+some memory related bug in release mode causing crash and stack corruption.
+

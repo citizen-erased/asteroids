@@ -1,0 +1,11 @@
+# absolute paths to useful directories
+dir_project = Dir("../").abspath
+dir_build_libraries  = dir_project + "/libraries"
+
+to_export = [
+    "dir_project",
+    "dir_build_libraries",
+]
+
+SConscript("../src/SConscript", variant_dir="debug", exports=to_export)
+

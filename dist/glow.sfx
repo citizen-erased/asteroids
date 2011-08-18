@@ -1,0 +1,22 @@
+texture framebuffer
+vec2 step
+float factor
+
+effect
+{
+    //float kernel[9] = float[9](0.9*0.9, 0.5*0.5, 0.4*0.4, 0.4*0.4, 0.3*0.3, 0.1*0.1, 0.2*0.2, 0.1*0.1, 0.1*0.1);
+    float kernel[6] = float[6](0.9*0.9, 0.6*0.6, 0.4*0.4, 0.3*0.3, 0.2*0.2, 0.1*0.1);
+    vec2 offset = step;
+
+    vec3 c = framebuffer(_in).rgb;
+
+    for(int i = 0; i < 6; i++)
+    {
+        c += framebuffer(_in+offset).rgb * kernel[i];
+        c += framebuffer(_in-offset).rgb * kernel[i];
+        offset += step;
+    }
+
+    _out = vec4(c*factor, 1.0);
+}
+
